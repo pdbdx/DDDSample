@@ -17,8 +17,10 @@ WebAPIのコントローラやDTO (Data Transfer Objects) などをここに配�
     - DataAccess: データベースへのアクセスを担当するクラスをここに配置します。  
         - Dummy ディレクトリは、データベースの代わりにダミーデータを使用する場合の実装を格納します。   
     - Factories.cs: データベースの種類やDummyなどのインスタンスを切り替えます。
+    - Extentions: Infrastructure内で使用する拡張メソッドです。
 - DDDExampleTests: テストコードを配置します。  
 
 ---
-- MySQLのDockerImageは以下からpullできます（docker、Ubuntu 22.04.2 LTS）  
-docker pull yanapri/sample:latest  
+- MySQLのDockerImageは以下からpullできます（Ubuntu 22.04.2 LTS）  
+docker pull yanapri/sample:latest
+(httpshttps://hub.docker.com/r/yanapri/sample://hub.docker.com/r/yanapri/sample)
