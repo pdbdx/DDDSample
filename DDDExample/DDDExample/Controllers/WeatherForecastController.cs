@@ -4,6 +4,7 @@ using DDDExample.Domain.Repositories;
 using DDDExample.Domain.Repositories.Parameters.WeatherForecast;
 using DDDExample.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
+using System.Transactions;
 
 namespace DDDExample.Controllers
 {
@@ -24,13 +25,13 @@ namespace DDDExample.Controllers
         }
 
         [HttpGet("latest", Name = "latest")]
-        public WeatherForecastEntity GetLatest()
+        public Task<WeatherForecastEntity> GetLatest()
         {
             return _weatherForecast.GetLatest();
         }
 
         [HttpGet("daterange", Name = "daterange")]
-        public IEnumerable<WeatherForecastEntity> GetWeatherForecastByDateRange(DateTime startDate, DateTime endDate)
+        public Task<IReadOnlyList<WeatherForecastEntity>> GetWeatherForecastByDateRange(DateTime startDate, DateTime endDate)
         {
             var parameters = new GetByDateRangeParams(startDate, endDate);
             return _weatherForecast.GetByDateRange(parameters);
@@ -39,15 +40,22 @@ namespace DDDExample.Controllers
         [HttpPost]
         public IActionResult Post(WeatherForecastDTO dto)
         {
-            var entity = new WeatherForecastEntity
-                (
-                    dto.WeatherForecastDate,
-                    dto.TemperatureC,
-                    dto.TemperatureF,
-                    dto.Summary ?? string.Empty
-                );
-            _weatherForecast.Save(entity);
-            return Ok();
+            // TransactionScopeを使用してトランザクションを開始する
+            using (var scope = new TransactionScope()) {
+
+                var entity = new WeatherForecastEntity
+                    (
+                        dto.WeatherForecastDate,
+                        dto.TemperatureC,
+                        dto.TemperatureF,
+                        dto.Summary ?? string.Empty
+                    );
+                _weatherForecast.Save(entity);
+                
+                // コミット
+                scope.Complete();
+                return Ok();
+            }
         }
     }
 }

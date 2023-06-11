@@ -18,12 +18,13 @@ namespace DDDExample.Infrastructure
         {
             var settings = new AppSettings();
 #if DEBUG
-            if (settings.IsDummy == 1)
+            if (settings.DbKind == 0)
             {
+                // ダミーデータ
                 return new WeatherForecastDummy();
             }
 #endif
-
+            // MySQL
             return new WeatherForecastMySql();
         }
     }

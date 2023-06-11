@@ -12,18 +12,18 @@ namespace DDDExample.Domain.Repositories
         /// 最新の値を取得
         /// </summary>
         /// <returns></returns>
-        WeatherForecastEntity GetLatest();
+        Task<WeatherForecastEntity> GetLatest();
 
         /// <summary>
         /// 日付の範囲で値を取得
         /// </summary>
         /// <returns></returns>
-        IReadOnlyList<WeatherForecastEntity> GetByDateRange(GetByDateRangeParams parameters);
+        Task<IReadOnlyList<WeatherForecastEntity>> GetByDateRange(GetByDateRangeParams parameters);
 
         /// <summary>
         /// 値を保存
         /// </summary>
         /// <param name="weather"></param>
-        public void Save(WeatherForecastEntity weather);
+        Task Save(WeatherForecastEntity weather);
     }
 }
