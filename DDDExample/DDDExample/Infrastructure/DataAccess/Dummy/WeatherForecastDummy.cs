@@ -1,7 +1,7 @@
 ﻿using DDDExample.Domain.Entities;
 using DDDExample.Domain.Repositories;
 using DDDExample.Domain.Repositories.Parameters.WeatherForecast;
-using DDDExample.Infrastructure.Extention;
+using DDDExample.Infrastructure.Extentions;
 
 namespace DDDExample.Infrastructure.DataAccess.Dummy
 {
