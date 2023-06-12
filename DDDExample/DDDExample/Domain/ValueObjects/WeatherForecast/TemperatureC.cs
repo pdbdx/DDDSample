@@ -22,6 +22,11 @@ namespace DDDExample.Domain.ValueObjects.WeatherForecast
         public int Value { get; }
 
         /// <summary>
+        /// 表示用の値
+        /// </summary>
+        public string DisplayValue => Value + "℃";
+
+        /// <summary>
         /// EqualsCore
         /// </summary>
         /// <param name="other">比較する値</param>

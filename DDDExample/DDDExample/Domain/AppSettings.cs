@@ -7,20 +7,21 @@ namespace DDDExample.Domain
     /// </summary>
     public class AppSettings
     {
-        public AppSettings() {
+        public AppSettings()
+        {
             var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("AppSettings.json");
+                .SetBasePath(Directory.GetCurrentDirectory() + @"\Domain")
+                .AddJsonFile("appSettings.json");
             var configuration = builder.Build();
 
-            this.IsDummy = configuration.GetValue<int>("IsDummy");
-            this.MySQLConnectionString = configuration.GetValue<string>("MySQLConnectionString") ?? string.Empty;
+            DbKind = configuration.GetValue<int>("DbKind");
+            MySQLConnectionString = configuration.GetValue<string>("MySQLConnectionString") ?? string.Empty;
         }
 
         /// <summary>
         /// Fakeの時True
         /// </summary>
-        public int IsDummy { get; }
+        public int DbKind { get; }
 
         public string MySQLConnectionString { get; }
 

@@ -1,4 +1,4 @@
-﻿namespace DDDExample.Infrastructure.Extentions
+﻿namespace DDDExample.Domain.Extentions
 {
     public static class TaskExtention
     {
