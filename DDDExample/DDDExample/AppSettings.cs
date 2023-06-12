@@ -1,6 +1,6 @@
 ﻿using System.Configuration;
 
-namespace DDDExample.Domain
+namespace DDDExample
 {
     /// <summary>
     /// Shared
@@ -10,7 +10,7 @@ namespace DDDExample.Domain
         public AppSettings()
         {
             var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory() + @"\Domain")
+                .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appSettings.json");
             var configuration = builder.Build();
 
